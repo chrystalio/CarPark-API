@@ -11,7 +11,14 @@ class VehicleObserver
      */
     public function created(Vehicle $vehicle): void
     {
-        if (auth()->check()){
+        //
+    }
+    /**
+     * Handle the Vehicle "creating" event.
+     */
+    public function creating(Vehicle $vehicle)
+    {
+        if (auth()->check()) {
             $vehicle->user_id = auth()->id();
         }
     }
