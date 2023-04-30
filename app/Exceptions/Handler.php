@@ -24,14 +24,12 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            $this->renderable(function (NotFoundHttpException $e, $request){
-                if ($request->is('api/v1/vehicles/*')){
-                    return response()->json([
-                        'message' => 'Vehicle record not found.'
-                    ], 404);
-                }
-            });
+        $this->renderable(function (NotFoundHttpException $e, $request) {
+            if ($request->is('api/v1/vehicles/*')) { // <- Add your condition here
+                return response()->json([
+                    'message' => 'Vehicle record not found.'
+                ], 404);
+            }
         });
     }
 }
