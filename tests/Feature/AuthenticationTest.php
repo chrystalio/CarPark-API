@@ -34,4 +34,25 @@ class AuthenticationTest extends TestCase
 
         $response->assertStatus(422);
     }
+
+    public function testUserCanRegisterWithCorrectCredentials() {
+        $response = $this->postJson('/api/v1/auth/register', [
+            'name'                  => 'John Doe',
+            'email'                 => 'johndoe@email.com',
+            'password'              => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $response->assertStatus(201)
+            ->assertJsonStructure([
+                'access_token',
+            ]);
+
+        $this->assertDatabaseHas('users', [
+            'name'  => 'John Doe',
+            'email' => 'johndoe@email.com',
+        ]);
+
+
+    }
 }
