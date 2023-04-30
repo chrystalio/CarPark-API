@@ -52,7 +52,21 @@ class AuthenticationTest extends TestCase
             'name'  => 'John Doe',
             'email' => 'johndoe@email.com',
         ]);
+    }
 
+    public function testUserCannotRegisterWithIncorrectCredentials(){
+        $response = $this->postJson('/api/v1/auth/register', [
+            'name'                  => 'John Doe',
+            'email'                 => 'johndoe@email.com',
+            'password'              => 'password',
+            'password_confirmation' => 'password1',
+        ]);
 
+        $response->assertStatus(422);
+
+        $this->assertDatabaseMissing('users', [
+            'name'  => 'John Doe',
+            'email' => 'john@example.com',
+        ]);
     }
 }
