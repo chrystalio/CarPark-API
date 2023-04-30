@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 class ParkingController extends Controller
 {
     public function show(Parking $parking){
+        $parking->load('vehicle', 'zone');
         return ParkingResource::make($parking);
     }
 
