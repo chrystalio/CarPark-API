@@ -11,6 +11,10 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class ParkingController extends Controller
 {
+    public function show(Parking $parking){
+        return ParkingResource::make($parking);
+    }
+
     public function start(Request $request)
     {
         $parkingData = $request->validate([
