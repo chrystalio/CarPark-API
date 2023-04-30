@@ -41,4 +41,17 @@ class ProfileTest extends TestCase
             'email' => 'john_updated@example.com',
         ]);
     }
+
+    public function testUserCanChangeTheirPassword()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->putJson('/api/v1/password', [
+            'current_password' => 'password',
+            'password' => 'new_password',
+            'password_confirmation' => 'new_password',
+        ]);
+
+        $response->assertStatus(202);
+    }
 }
