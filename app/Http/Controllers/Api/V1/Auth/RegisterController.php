@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
+/**
+ * @group Auth
+ */
 class RegisterController extends Controller
 {
     public function __invoke(Request $request)
