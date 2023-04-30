@@ -8,6 +8,9 @@ use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
+/**
+ * @group Auth
+ */
 class ProfileController extends Controller
 {
     public function show(Request $request)

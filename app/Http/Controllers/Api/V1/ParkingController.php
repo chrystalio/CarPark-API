@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
+/**
+ * @group Auth
+ */
 class ParkingController extends Controller
 {
     public function show(Parking $parking){
